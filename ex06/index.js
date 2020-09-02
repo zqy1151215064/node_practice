@@ -7,16 +7,14 @@ module.exports.createToken = token => {
 
     return {
         getExp: () => {
-            // ##BEGIN## 代码已加密
-JEHJEHJEHJEHJEHJEHJEHJEHJEHJEHJEHJEHOSJOEEOESOEIOEAJEHOEPOOIOPPOEJOEEOOIOSOJEHJXIJEHJASOJSJAIJAXJHOOEPOOIOEXOEIOSSJPPOESOSSOPSJEHJIEOPJOSEOSEOSSOEXJHOOSEOEXOEEOEOJPPOOIOEXOPPOOOJHPOOEJPAJEHJPEOOAOOIOEIOSSJXJJHIJPEJPHJPH
-JEHJEHJEHJEHJEHJEHJEHJEHJEHJEHJEHJEHOEXOSSOEAOPJOEXOESJEHOEPOOIOPPOEJOEEOOIOSOJHOOSSOPEOEP
-            // ##END##
+            // 暗号：贪心算法
+            const exp = JSON.parse(Buffer.from(ary[1], "base64").toString('utf-8')).exp;
+            return exp;
         },
 
         verify: key => {
-            const hmac = crypto.createHmac('SHA256', key).update(ary[0]+ '.' +  ary[1]).digest('base64');
+            const hmac = crypto.createHmac('SHA256', key).update(ary[0] + '.' + ary[1]).digest('base64');
             return hmac === ary[2] + '='
-            
         }
     }
 }
